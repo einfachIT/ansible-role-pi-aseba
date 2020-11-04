@@ -1,0 +1,40 @@
+---
+
+- name: install flatpak
+  apt:
+    name:
+      - flatpak
+    update_cache: yes
+    state: present
+
+- name: Check udev present (not in docker container on CI build)
+  stat:
+    path: /etc/udev/rules.d/
+  register: udev
+
+- name: 
+  copy:
+    src: 99-mobsya.rules 
+    dest: /etc/udev/rules.d/99-mobsya.rules
+    mode: 0644
+  register: mobsya_rules
+  when: udev.stat.exists
+
+- name:
+  command: udevadm control --reload-rules
+  when: mobsya_rules.changed
+
+- name: Install aseba distribution
+  flatpak:
+    name: https://flathub.org/repo/appstream/org.mobsya.ThymioSuite.flatpakref
+    state: present
+
+- name: download aseba logo
+  copy:
+    src: aseba.png
+    dest: '/usr/share/pixmaps/aseba.png'
+
+- name: create desktop Entry
+  copy:
+    src: aseba.desktop
+    dest: /usr/share/applications/
