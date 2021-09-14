@@ -24,8 +24,8 @@
   command: udevadm control --reload-rules
   when: mobsya_rules.changed
  
-- name: add flatpak
-  repo flatpak_remote:
+- name: add flatpak repo 
+  flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
