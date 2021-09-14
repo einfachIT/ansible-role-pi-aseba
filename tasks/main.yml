@@ -26,7 +26,7 @@
 
 - name: Install aseba distribution
   flatpak:
-    name: https://flathub.org/repo/appstream/org.mobsya.ThymioSuite.flatpakref
+    name: org.mobsya.ThymioSuite
     state: present
 
 - name: download aseba logo
