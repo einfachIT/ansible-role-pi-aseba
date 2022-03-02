@@ -1,6 +1,7 @@
 galaxy_info:
   role_name: pi_aseba
   author: Bastian Bukatz
+  namespace: bassinator
   description: install aseba studio on raspbery pi (64 bit only)
   company: einfach IT
 
