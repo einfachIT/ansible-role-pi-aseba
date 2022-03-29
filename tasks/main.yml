@@ -7,10 +7,15 @@
     update_cache: yes
     state: present
 
-- name: Check udev present (not in docker container on CI build)
-  stat:
-    path: /etc/udev/rules.d/
-  register: udev
+- name: Getting process IDs of udev process (not running in docker container on CI build)
+  ansible.builtin.command: ps -C systemd-udevd
+  register: ps_udevd
+  changed_when: false
+  failed_when: ps_udevd.stderr != ""
+
+- name: debug reistered var
+  ansible.builtin.command: /lib/systemd/systemd-udevd --daemon
+  when: ps_udevd.rc != 0
 
 - name: copy udev rules for mobsya
   copy:
@@ -18,7 +23,6 @@
     dest: /etc/udev/rules.d/99-mobsya.rules
     mode: 0644
   register: mobsya_rules
-  when: udev.stat.exists
 
 - name: update udev rules
   command: udevadm control --reload-rules
