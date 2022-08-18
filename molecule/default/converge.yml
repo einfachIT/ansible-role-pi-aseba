@@ -2,6 +2,6 @@
 - name: Converge
   hosts: all
   tasks:
-    - name: "Include bassinator.pi_aseba"
+    - name: "Include einfachit.pi_aseba"
       include_role:
-        name: "bassinator.pi_aseba"
+        name: "einfachit.pi_aseba"

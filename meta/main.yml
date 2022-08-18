@@ -1,7 +1,7 @@
 galaxy_info:
   role_name: pi_aseba
   author: Bastian Bukatz
-  namespace: bassinator
+  namespace: einfachit 
   description: install aseba studio on raspbery pi (64 bit only)
   company: einfach IT
 
@@ -10,9 +10,9 @@ galaxy_info:
   min_ansible_version: 2.1
 
   platforms:
-  - name: RaspiOS
+  - name: Debian
     versions:
-    - arm64-2020-08-24
+    - all
 
   galaxy_tags: [raspberry, aseba, thymio]
 

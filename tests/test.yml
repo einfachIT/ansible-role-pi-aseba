@@ -2,4 +2,4 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - bassinator.pi_aseba
+    - einfachit.pi_aseba
