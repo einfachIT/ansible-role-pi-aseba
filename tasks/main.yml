@@ -13,11 +13,8 @@
     dest: /etc/udev/rules.d/99-mobsya.rules
     mode: 0644
   register: mobsya_rules
+  notify: update udev rules
 
-- name: update udev rules
-  ansible.builtin.command: udevadm control --reload-rules
-  when: mobsya_rules.changed
- 
 - name: add flatpak repo 
   community.general.flatpak_remote:
     name: flathub
@@ -25,7 +22,7 @@
     flatpakrepo_url: https://flathub.org/repo/flathub.flatpakrepo
 
 - name: Install aseba distribution
-  community.gerneral.flatpak:
+  community.general.flatpak:
     name: org.mobsya.ThymioSuite
     state: present
 

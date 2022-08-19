@@ -1,2 +1,4 @@
 ---
-# handlers file for bassinator.pi_aseba
+
+- name: update udev rules
+  ansible.builtin.command: udevadm control --reload-rules
