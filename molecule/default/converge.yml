@@ -3,5 +3,5 @@
   hosts: all
   tasks:
     - name: "Include einfachit.pi_aseba"
-      include_role:
+      ansible.builtin.include_role:
         name: "einfachit.pi_aseba"
