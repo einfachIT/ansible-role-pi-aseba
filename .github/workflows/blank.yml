@@ -25,5 +25,5 @@ jobs:
       - name: Run tests
         run: |
           source source.me
-          export SYNC_SERVER_IMAGE="balenalib/amd64-debian-python"
+          export CONTAINER_IMAGE="balenalib/amd64-debian-python"
           molecule test
